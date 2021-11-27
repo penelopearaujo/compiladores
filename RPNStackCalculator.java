@@ -12,8 +12,19 @@ public class RPNStackCalculator {
         System.out.println("Enter a RPN expression:");
         rpnExpression = input.nextLine();
 
-        result = calculator.calculateRPNExpr(rpnExpression);
-        System.out.println(result);
+        Lexer lexer = new Lexer(rpnExpression);
+
+        while (!lexer.isExausthed()) {
+            System.out.printf("Token [type=%s, lexeme=%s]\n", lexer.currentToken(), lexer.currentLexema() );
+            lexer.moveAhead();
+        }
+
+        if (lexer.isSuccessful()) {
+            result = calculator.calculateRPNExpr(rpnExpression);
+            System.out.println(result);
+        } else {
+            System.out.println(lexer.errorMessage());
+        }
     }
 
     // le a entrada char por char
