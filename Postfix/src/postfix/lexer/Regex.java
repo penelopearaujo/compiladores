@@ -21,7 +21,7 @@ package postfix.lexer;
  */
 public class Regex {
 	// regex for id recognition
-	private static final String ID_REGEX = "([a-e]*)"; // id is any word containing only letters from a to e
+	private static final String ID_REGEX = "(a|b|c|d|e|x|y|z)";
 	// regex for literals recognition
 	private static final String NUM_REGEX = "(\\d)+"; // short for [0-9]
 	// regex for single-character operation recognition.
