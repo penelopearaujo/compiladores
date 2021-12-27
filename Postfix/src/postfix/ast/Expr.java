@@ -27,9 +27,24 @@ public abstract class Expr {
 	public interface Visitor<T> {
 		T visitNumberExpr(Number expr);
 		T visitBinopExpr(Binop expr);
+		T visitIDExpr(ID expr);
 	}
 
 	// Nested Expr classes here
+
+	// ID expression
+	public static class ID extends Expr {
+		public ID(String value) {
+			this.value = value;
+		}
+
+		@Override
+		public <T> T accept(Visitor<T> visitor) {
+			return visitor.visitIDExpr(this);
+		}
+	
+		public final String value;
+	}
 
 	// Number expression
 	public static class Number extends Expr {
@@ -47,7 +62,7 @@ public abstract class Expr {
 
 	// Binop expression
 	public static class Binop extends Expr {
-		public Binop(Expr left, Expr right, Token operator) {
+		public Binop(Expr right, Expr left, Token operator) {
 			this.left = left;
 			this.right = right;
 			this.operator = operator;

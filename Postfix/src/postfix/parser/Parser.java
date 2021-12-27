@@ -53,6 +53,9 @@ public class Parser {
 		while (!isAtEnd()) {
 			if(this.match(TokenType.NUM)) {
 				this.stack.push(this.number());
+			} 
+			else if(this.match(TokenType.ID)) {
+				this.stack.push(this.ID());
 			}
 			// matching any of the operation tokens
 			else if(this.match(TokenType.PLUS, TokenType.MINUS, 
@@ -62,6 +65,10 @@ public class Parser {
 			this.advance();
 		}
 		return this.stack.pop();
+	}
+
+	private Expr ID() {
+		return new Expr.ID(peek().lexeme);
 	}
 
 	private Expr number() {

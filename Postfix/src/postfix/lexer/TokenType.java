@@ -21,12 +21,13 @@ package postfix.lexer;
  */
 public enum TokenType {
 
+	// IDs.
+	ID,
 	// Literals.
 	NUM,
-
 	// Single-character tokens for operations.
 	MINUS, PLUS, SLASH, STAR,
-	
+
 	EOF
 
 }

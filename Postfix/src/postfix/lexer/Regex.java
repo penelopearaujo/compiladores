@@ -20,6 +20,8 @@ package postfix.lexer;
  * @author Henrique Rebelo
  */
 public class Regex {
+	// regex for id recognition
+	private static final String ID_REGEX = "([a-e]*)"; // id is any word containing only letters from a to e
 	// regex for literals recognition
 	private static final String NUM_REGEX = "(\\d)+"; // short for [0-9]
 	// regex for single-character operation recognition.
@@ -28,7 +30,11 @@ public class Regex {
 	private static final String MINUS_REGEX = "(\\-)"; // for minus operation recognition
 	private static final String SLASH_REGEX = "(/)"; // for div operation recognition
 	private static final String STAR_REGEX = "(\\*)"; // for mult operation recognition
-	
+
+	public static boolean isID(String token) {
+		return token.matches(ID_REGEX);
+	}
+
 	public static boolean isNum(String token) {
 		return token.matches(NUM_REGEX);
 	}
@@ -52,7 +58,7 @@ public class Regex {
 	public static boolean isStar(String token) {
 		return token.matches(STAR_REGEX);
 	}
-	
+
 	/**
 	 * returns the proper token type for an operation token
 	 * 

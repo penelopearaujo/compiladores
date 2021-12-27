@@ -22,7 +22,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.*;
 
 import postfix.ast.AstPrinter;
 import postfix.ast.Expr;
@@ -38,7 +38,7 @@ import postfix.parser.ParserError;
  */
 public class Postfix {
 
-	private static final Interpreter interpreter = new Interpreter();
+	private static final Interpreter interpreter = new Interpreter(new HashMap <String, String>());
 	private static boolean hasError = false;
 	private static boolean debugging = false;
 
@@ -114,6 +114,7 @@ public class Postfix {
 			if(debugging) {
 				printAST(expr);
 			}
+
 			System.out.println(interpreter.interp(expr));
 		} catch (LexError e) {
 			error("Lex", e.getMessage());
